@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  spec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: The spec is valid JSON
+        run: python3 -m json.tool spec/endpoints.json > /dev/null
+      - name: The guide's endpoint list matches the spec
+        run: python3 tools/generate.py && git diff --exit-code docs/assets/endpoints.js
+      - name: Guide scripts parse
+        run: node --check docs/assets/guide.js && node --check docs/assets/theme.js && node --check docs/assets/endpoints.js

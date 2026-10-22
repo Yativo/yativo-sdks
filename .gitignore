@@ -1,0 +1,35 @@
+# Secrets: never commit credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Dependencies and builds
+node_modules/
+node/dist/
+vendor/
+composer.lock
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+python/build/
+python/dist/
+.phpunit.result.cache
+.phpunit.cache/
+dist/
+*.zip
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+
+# The SDKs are separate repositories, checked out here by tools/clone-sdks.sh
+/node/
+/python/
+/php/
+/laravel/
+/go/
+/wordpress/
